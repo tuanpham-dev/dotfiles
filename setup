@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+# copy .config folder
+cp -r .config ~/
+mkdir -p ~/.config/nvim/backups
+
+# install nodejs 14
+. ~/.nvm/nvm.sh
+. ~/.zshrc
+nvm install 14
+
+# install neovim
+sudo apt install neovim -y
+sudo apt remove neovim -y
+mkdir -p ~/.local/bin
+wget https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage -O ~/.local/bin/nvim
+chmod +x ~/.local/bin/nvim
+
+# install vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# install vim plugins
+nvim -c 'PlugInstall|qa'
+
+# install coc plugins
+nvim -c 'CocInstall -sync coc-json coc-html coc-emmet coc-snippets coc-tsserver|qa'

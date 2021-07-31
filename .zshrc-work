@@ -1,0 +1,30 @@
+alias npms='npm run start'
+alias npmb='npm run build'
+alias npmbs='npm run staging'
+alias npmbp='npm run production'
+
+csm() {
+    mkdir -p "./src/modules/$1"
+    touch "./src/modules/$1/$1.liquid"
+
+    if [ "$2" = "a" ] || [ "$2" = "c" ]; then
+        echo -e ".$1 {\n  display: block;\n}" >> "./src/modules/$1/$1.css"
+    fi
+
+    if [ "$2" = "a" ] || [ "$2" = "j" ]; then
+        touch "./src/modules/$1/$1.js"
+    fi
+
+    if [ "$3" = "s" ]; then
+        touch "./src/modules/$1/$1.section.liquid"
+    fi
+
+    if [ "$3" = "b" ]; then
+        touch "./src/modules/$1/$1.block.liquid"
+    fi
+}
+
+cdt() {
+    cd "wp-content/themes/$1"
+    nvm use 8
+}
