@@ -80,7 +80,7 @@ autocmd CursorHoldI * stopinsert
 
 " Enter insert mode on new terminal created
 autocmd TermOpen term://* startinsert
-autocmd BufEnter, BufNew term://* startinsert
+autocmd BufEnter,BufNew term://* startinsert
 
 " Appearance
 syntax on
@@ -128,6 +128,10 @@ let g:startify_session_delete_buffers = 1
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
+let g:startify_mapping_nowait = 1
+let g:startify_session_sort = 0
+let g:startify_session_number = 5
+let g:startify_files_number = 5
 let g:startify_lists = [
   \ { 'type': 'sessions', 'header': ['    Projects'] },
   \ { 'type': 'dir', 'header': ['    Recent Files'] }
@@ -175,32 +179,30 @@ noremap <leader>c '*yy<cr>'
 noremap <leader>v '+p<cr>'
 
 " Pane
-noremap <leader>ws <C-w>s
-noremap <leader>wv <C-w>v
-noremap <leader>wc <C-w>c
-noremap <leader>ww <C-w>w
-noremap <leader>WW <C-w>W
-noremap <leader>== <C-w>5>
-noremap <leader>-- <C-w>5<
-noremap <leader>++ <C-w>5+
-noremap <leader>__ <C-w>5-
-
-tnoremap <leader>ww <C-\><C-n><C-w>w
-tnoremap <leader>WW <C-\><C-n><C-w>W
-tnoremap <leader>== <C-\><C-n><C-w>5>
-tnoremap <leader>-- <C-\><C-n><C-w>5<
-tnoremap <leader>++ <C-\><C-n><C-w>5+
-tnoremap <leader>__ <C-\><C-n><C-w>5-
+noremap <leader>= <c-w>5>
+noremap <leader>- <c-w>5<
+noremap <leader>+ <c-w>5+
+noremap <leader>_ <c-w>5-
+noremap <tab> <c-w>w
+noremap <s-tab> <c-w>W
 
 noremap <leader>1 1gt
+noremap <leader>2 1gt
+noremap <leader>3 1gt
+noremap <leader>4 1gt
+noremap <leader>5 1gt
+noremap <leader>6 1gt
+noremap <leader>7 1gt
+noremap <leader>8 1gt
+noremap <leader>9 1gt
 noremap <leader>t gt
 noremap <leader>T gT
-tnoremap <leader>tt <C-\><C-n>gt
-tnoremap <leader>TT <C-\><C-n>gT
 
 " Terminal
+tnoremap jk <c-\><c-n>
+tnoremap <esc> <c-\><c-n>
 noremap <leader>` :sp \| term<cr>
-tnoremap <leader>`` <C-\><C-n>:vs \| term<cr>
+tnoremap <leader>`` <c-\><c-n>:vs \| term<cr>
 
 " NERDTree
 noremap <leader>e :NERDTreeTabsToggle<cr>
@@ -211,21 +213,21 @@ noremap <leader>P :Files<cr>
 noremap <leader>fs :Rg<cr>
 
 " Insert Mode Navigation
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+inoremap <c-h> <left>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-l> <right>
 
 " Exit insert mode with jk
 inoremap jk <esc>
 
 " Move lines
-nnoremap <A-j> :m .+1<cr>==
-nnoremap <A-k> :m .-2<cr>==
-inoremap <A-j> :m .+1<cr>==gi
-inoremap <A-k> :m .-2<cr>==gi
-vnoremap <A-j> :m '>+1<cr>gv=gv
-vnoremap <A-k> :m '<-2<cr>gv=gv
+nnoremap <a-j> :m .+1<cr>==
+nnoremap <a-k> :m .-2<cr>==
+inoremap <a-j> :m .+1<cr>==gi
+inoremap <a-k> :m .-2<cr>==gi
+vnoremap <a-j> :m '>+1<cr>gv=gv
+vnoremap <a-k> :m '<-2<cr>gv=gv
 " -- MacOs
 nnoremap ∆ :m .+1<cr>==
 nnoremap ˚ :m .-2<cr>==
@@ -238,13 +240,13 @@ vnoremap ˚ :m '<-2<cr>gv=gv
 noremap <leader>o o<cr><up>
 noremap <leader>O O<cr><up>
 
-" Add comma to the end of current line and add blank line after
+" Add comma to the end of current line and add blank line
 noremap ,, A,<esc>o
 inoremap <nowait> ,, <esc>A,<esc>o
 
 " Comment line/selection
-noremap <C-_> :Commentary<cr>
-vnoremap <C-_> :Commentary<cr>
+noremap <c-_> :Commentary<cr>
+vnoremap <c-_> :Commentary<cr>
 
 " === COC === "
 
@@ -263,10 +265,10 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
-inoremap <expr> <Tab> pumvisible() ? "\<down>" : "\<tab>"
+inoremap <expr> <tab> pumvisible() ? "\<down>" : "\<tab>"
 inoremap <expr> <s-tab> pumvisible() ? "\<up>" : "\<s-tab>"
 
 inoremap <silent><expr> <c-space> pumvisible() ? "\<c-g>u": coc#refresh()
 inoremap <silent><expr> <c-@> pumvisible() ? "\<c-g>u": coc#refresh()n
 " -- MacOs - map <c-space> to send å∫ç in iterm2
-inoremap å∫ç pumvisible() ? "\<C-g>u" : coc#refresh()
+inoremap <silent><expr> å∫ç pumvisible() ? "\<c-g>u" : coc#refresh()
