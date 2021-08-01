@@ -226,6 +226,13 @@ inoremap <A-j> :m .+1<cr>==gi
 inoremap <A-k> :m .-2<cr>==gi
 vnoremap <A-j> :m '>+1<cr>gv=gv
 vnoremap <A-k> :m '<-2<cr>gv=gv
+" -- MacOs
+nnoremap ∆ :m .+1<cr>==
+nnoremap ˚ :m .-2<cr>==
+inoremap ∆ :m .+1<cr>==gi
+inoremap ˚ :m .-2<cr>==gi
+vnoremap ∆ :m '>+1<cr>gv=gv
+vnoremap ˚ :m '<-2<cr>gv=gv
 
 " Add blank lines
 noremap <leader>o o<cr><up>
@@ -257,3 +264,5 @@ inoremap <expr> <s-tab> pumvisible() ? "\<up>" : "\<s-tab>"
 
 inoremap <silent><expr> <c-space> pumvisible() ? "\<c-g>u": coc#refresh()
 inoremap <silent><expr> <c-@> pumvisible() ? "\<c-g>u": coc#refresh()n
+" -- MacOs - map <c-space> to send å∫ç in iterm2
+inoremap å∫ç pumvisible() ? "\<C-g>u" : coc#refresh()
