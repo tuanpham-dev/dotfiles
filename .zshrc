@@ -115,6 +115,7 @@ prompt_context() { }
 alias si='landscape-sysinfo'
 alias vim='nvim'
 alias vi='nvim'
+alias v='nvim'
 
 mcd() {
     mkdir -p -- "$1" &&
@@ -169,14 +170,14 @@ yat() {
 }
 
 penv() {
-  TARGET="${@: -1}"
+    TARGET="${@: -1}"
 
-  if [ ! -z "$TARGET" ]; then
-    mkdir "$TARGET"
-    cd "$TARGET"
-  fi
+    if [ ! -z "$TARGET" ]; then
+        mkdir "$TARGET"
+        cd "$TARGET"
+    fi
 
-  python3 -m venv venv && source venv/bin/activate
+    python3 -m venv venv && source venv/bin/activate
 }
 
 [ -s ~/.zshrc-work ] && . ~/.zshrc-work
