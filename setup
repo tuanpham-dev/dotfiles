@@ -10,7 +10,7 @@ mkdir -p ~/.config/nvim/backups
 nvm install 14
 
 # install neovim
-sudo apt install neovim -y
+sudo apt install neovim rename ripgrep -y
 sudo apt remove neovim -y
 mkdir -p ~/.local/bin
 wget https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage -O ~/.local/bin/nvim
