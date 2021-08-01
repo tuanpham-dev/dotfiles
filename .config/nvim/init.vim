@@ -238,6 +238,10 @@ vnoremap ˚ :m '<-2<cr>gv=gv
 noremap <leader>o o<cr><up>
 noremap <leader>O O<cr><up>
 
+" Add comma to the end of current line and add blank line after
+noremap ,, A,<esc>o
+inoremap <nowait> ,, <esc>A,<esc>o
+
 " Comment line/selection
 noremap <C-_> :Commentary<cr>
 vnoremap <C-_> :Commentary<cr>
