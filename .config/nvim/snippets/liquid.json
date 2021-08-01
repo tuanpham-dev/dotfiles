@@ -464,11 +464,6 @@
     "description": "Math filter: ceil",
     "body": "| ceil"
   },
-  "Filter divided by": {
-    "prefix": "divided_by",
-    "description": "Math filter: divided by",
-    "body": "| divided_by: ${1:2}"
-  },
   "Filter floor": {
     "prefix": "floor",
     "description": "Math filter: floor",
