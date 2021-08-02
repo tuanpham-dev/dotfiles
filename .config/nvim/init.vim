@@ -26,6 +26,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'stephenway/postcss.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'tuanpham-dev/vim-liquid'
 Plug 'tuanpham-dev/vim-html-indent'
 
@@ -168,7 +169,7 @@ command! FZFiles call FZFiles()
 let mapleader = ' '
 
 " Clear search highlight with <esc>
-noremap <silent><esc> :noh<cr>
+noremap <silent> <esc> :noh<cr>
 
 " Session
 noremap <leader>ls :SSave!<cr>
@@ -200,7 +201,7 @@ noremap <leader>T gT
 
 " Terminal
 tnoremap jk <c-\><c-n>
-tnoremap <esc> <c-\><c-n>
+tnoremap <expr> <esc> (&filetype == 'fzf') ? '<esc>' : '<c-\><c-n>'
 noremap <leader>` :sp \| term<cr>
 tnoremap <leader>`` <c-\><c-n>:vs \| term<cr>
 
@@ -228,7 +229,7 @@ inoremap <a-j> :m .+1<cr>==gi
 inoremap <a-k> :m .-2<cr>==gi
 vnoremap <a-j> :m '>+1<cr>gv=gv
 vnoremap <a-k> :m '<-2<cr>gv=gv
-" -- MacOs
+" -- MacOs - <opt-j>/<opt-k>
 nnoremap ∆ :m .+1<cr>==
 nnoremap ˚ :m .-2<cr>==
 inoremap ∆ :m .+1<cr>==gi
@@ -246,6 +247,7 @@ inoremap <nowait> ,, <esc>A,<esc>o
 
 " Comment line/selection
 noremap <c-_> :Commentary<cr>
+inoremap <c-_> :Commentary<cr>
 vnoremap <c-_> :Commentary<cr>
 
 " === COC === "
