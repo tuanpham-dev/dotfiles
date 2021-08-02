@@ -132,6 +132,17 @@ rr() {
     rename 's/$ENV{SEARCH}/$ENV{REPLACE}/' ${SEARCH}*
 }
 
+gitf() {
+    GIT_ROOT=$(git rev-parse --show-toplevel) || return
+    PRE_COMMIT="$GIT_ROOT/.git/hooks/pre-commit"
+
+    if [ -s "$PRE_COMMIT" ] && [ "$(grep -s "LOCAL_DEV" "$PRE_COMMIT")" = "" ]; then
+        mv "$PRE_COMMIT" "${PRE_COMMIT}-old"
+    fi
+
+    cp ~/.patches/pre-commit "$PRE_COMMIT"
+}
+
 alias gl='git log --oneline -10'
 alias gco='git checkout'
 alias gcob='git checkout -b'

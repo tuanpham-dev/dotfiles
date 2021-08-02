@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# redirect output to stderr
+exec 1>&2
+
+# check if files contain TODO: LOCAL DEV
+LOCAL_DEV="TODO: LOCAL DEV"
+
+if test $(grep -s "$LOCAL_DEV" $(git diff --name-only --cached) | wc -l) != 0; then
+    grep -sn "$LOCAL_DEV" $(git diff --name-only --cached)
+    echo "There are some occurences of local dev in your modification"
+    exit 1
+fi
+
+OLD_SCRIPT="$(dirname $0)/pre-commit-old"
+[ -s "$OLD_SCRIPT" ] && sh "$OLD_SCRIPT"
+
+
